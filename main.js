@@ -102,10 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Active nav link highlighting ──
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname;
   document.querySelectorAll('.nav-links a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (href === '/' && (currentPath === '/' || currentPath === '/index.html')) {
+      link.classList.add('active');
+    } else if (href !== '/' && (currentPath === href || currentPath === href + '/')) {
       link.classList.add('active');
     }
   });
